@@ -481,7 +481,7 @@
         WMMenuItem *item = [[WMMenuItem alloc] initWithFrame:frame];
         item.tag = (i + WMMENUITEM_TAG_OFFSET);
         item.delegate = self;
-        item.text = [self.dataSource menuView:self titleAtIndex:i];
+        item.attributedText = [self.dataSource menuView:self titleAtIndex:i];
         item.textAlignment = NSTextAlignmentCenter;
         item.userInteractionEnabled = YES;
         item.backgroundColor = [UIColor clearColor];
