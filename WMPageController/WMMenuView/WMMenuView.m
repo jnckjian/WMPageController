@@ -481,7 +481,6 @@
         WMMenuItem *item = [[WMMenuItem alloc] initWithFrame:frame];
         item.tag = (i + WMMENUITEM_TAG_OFFSET);
         item.delegate = self;
-        item.attributedText = [self.dataSource menuView:self titleAtIndex:i];
         item.textAlignment = NSTextAlignmentCenter;
         item.userInteractionEnabled = YES;
         item.backgroundColor = [UIColor clearColor];
@@ -495,6 +494,7 @@
         } else {
             item.font = [UIFont systemFontOfSize:item.selectedSize];
         }
+        item.attributedText = [self.dataSource menuView:self titleAtIndex:i];
         if ([self.dataSource respondsToSelector:@selector(menuView:initialMenuItem:atIndex:)]) {
             item = [self.dataSource menuView:self initialMenuItem:item atIndex:i];
         }
