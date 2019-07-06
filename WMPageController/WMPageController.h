@@ -67,7 +67,7 @@ extern NSString *const WMControllerDidFullyDisplayedNotification;
  *
  *  @return A `NSString` value to show at the top of `WMPageController`.
  */
-- (NSString *)pageController:(WMPageController *)pageController titleAtIndex:(NSInteger)index;
+- (NSAttributedString *)pageController:(WMPageController *)pageController titleAtIndex:(NSInteger)index;
 
 @required
 /**
@@ -154,7 +154,7 @@ extern NSString *const WMControllerDidFullyDisplayedNotification;
  *  各个控制器标题
  *  Titles of view controllers in page controller.
  */
-@property (nonatomic, nullable, copy) NSArray<NSString *> *titles;
+@property (nonatomic, nullable, copy) NSArray<NSAttributedString *> *titles;
 @property (nonatomic, strong, readonly) UIViewController *currentViewController;
 
 /**
