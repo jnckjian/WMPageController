@@ -46,7 +46,7 @@ typedef NS_ENUM(NSUInteger, WMMenuViewLayoutMode) {
 
 @required
 - (NSInteger)numbersOfTitlesInMenuView:(WMMenuView *)menu;
-- (NSString *)menuView:(WMMenuView *)menu titleAtIndex:(NSInteger)index;
+- (NSAttributedString *)menuView:(WMMenuView *)menu titleAtIndex:(NSInteger)index;
 
 @optional
 /**
