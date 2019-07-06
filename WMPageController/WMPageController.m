@@ -73,7 +73,7 @@ static NSInteger const kWMControllerCountUndefined = -1;
     return self;
 }
 
-- (instancetype)initWithViewControllerClasses:(NSArray<Class> *)classes andTheirTitles:(NSArray<NSString *> *)titles {
+- (instancetype)initWithViewControllerClasses:(NSArray<Class> *)classes andTheirTitles:(NSArray<NSAttributedString *> *)titles {
     if (self = [self initWithNibName:nil bundle:nil]) {
         NSParameterAssert(classes.count == titles.count);
         _viewControllerClasses = [NSArray arrayWithArray:classes];
@@ -245,7 +245,7 @@ static NSInteger const kWMControllerCountUndefined = -1;
 #pragma mark - Delegate
 - (NSDictionary *)infoWithIndex:(NSInteger)index {
     NSString *title = [self titleAtIndex:index];
-    return @{@"title": title ?: @"", @"index": @(index)};
+    return @{@"title": title, @"index": @(index)};
 }
 
 - (void)willCachedController:(UIViewController *)vc atIndex:(NSInteger)index {
@@ -321,14 +321,14 @@ static NSInteger const kWMControllerCountUndefined = -1;
     return [[self.viewControllerClasses[index] alloc] init];
 }
 
-- (NSString * _Nonnull)titleAtIndex:(NSInteger)index {
-    NSString *title = nil;
+- (NSAttributedString * _Nonnull)titleAtIndex:(NSInteger)index {
+    NSAttributedString *title = nil;
     if ([self.dataSource respondsToSelector:@selector(pageController:titleAtIndex:)]) {
         title = [self.dataSource pageController:self titleAtIndex:index];
     } else {
         title = self.titles[index];
     }
-    return (title ?: @"");
+    return (title ?: [[NSAttributedString alloc] initWithString:@""]);
 }
 
 #pragma mark - Private Methods
@@ -667,7 +667,7 @@ static NSInteger const kWMControllerCountUndefined = -1;
 }
 
 - (CGFloat)wm_calculateItemWithAtIndex:(NSInteger)index {
-    NSString *title = [self titleAtIndex:index];
+    NSString *title = [self titleAtIndex:index].string;
     UIFont *titleFont = self.titleFontName ? [UIFont fontWithName:self.titleFontName size:self.titleSizeSelected] : [UIFont systemFontOfSize:self.titleSizeSelected];
     NSDictionary *attrs = @{NSFontAttributeName: titleFont};
     CGFloat itemWidth = [title boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX) options:(NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading) attributes:attrs context:nil].size.width;
@@ -845,7 +845,7 @@ static NSInteger const kWMControllerCountUndefined = -1;
     return self.childControllersCount;
 }
 
-- (NSString *)menuView:(WMMenuView *)menu titleAtIndex:(NSInteger)index {
+- (NSAttributedString *)menuView:(WMMenuView *)menu titleAtIndex:(NSInteger)index {
     return [self titleAtIndex:index];
 }
 
