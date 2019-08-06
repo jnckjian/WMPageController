@@ -86,7 +86,7 @@
     NSMutableAttributedString *attr = [[NSMutableAttributedString alloc] initWithAttributedString:self.attributedText];
     NSRange range = [attr.string rangeOfString:@"\n"];
     [attr addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:r green:g blue:b alpha:a] range:NSMakeRange(0, range.location)];
-    [attr addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:r green:g blue:b alpha:a * 0.8] range:NSMakeRange(range.location, attr.string.length - range.location)];
+    [attr addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:r green:g blue:b alpha:a * 0.6] range:NSMakeRange(range.location, attr.string.length - range.location)];
     self.attributedText = attr;
     CGFloat minScale = self.normalSize / self.selectedSize;
     CGFloat trueScale = minScale + (1 - minScale)*rate;
